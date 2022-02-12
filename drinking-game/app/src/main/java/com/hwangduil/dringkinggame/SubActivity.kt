@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import java.security.SecureRandom
+import kotlin.math.nextDown
 
 class SubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,21 +56,22 @@ class SubActivity : AppCompatActivity() {
 
             // 버튼 클릭 시
             var clickedBtn = false
+            val randomArr:Array<Int?> = getRandoms(rep)
             btn.apply {
                 setOnClickListener {
                     clickedBtn = true
                     isEnabled = false
 
-                    val random = (Math.random() * 10).toInt()
-                    text = if (id == random) { "Picked" }
-                           else { "Safe" }
-
+                    for (k in randomArr.indices) {
+                        if(randomArr[k] == id) {
+                            text = "Picked"
+                        } else {
+                            text = "Safe"
+                        }
+                    }
                 }
             }
-
-
         }
-
 
         // 이전 페이지로
         val restartBtn = findViewById<Button>(R.id.restartBtn)
@@ -77,5 +80,25 @@ class SubActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    fun getRandoms(rep:Int) : Array<Int?> {
+        val switch = BooleanArray(10)
+        var index = 0
+        var res:Int
+
+        val numArr = arrayOfNulls<Int>(rep)
+
+        while (index < rep) {
+            res = (Math.random() * 10).toInt()
+            if(!switch[res]) {
+                switch[res] = true
+                numArr[index] = res + 1
+                index++
+            }
+        }
+
+        return numArr
+    }
+
 
 }
