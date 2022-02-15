@@ -10,6 +10,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MemberManagementApp">
         <activity
+                android:name=".PrintAllMemberActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".SearchActivity"
                 android:exported="true"/>
         <activity

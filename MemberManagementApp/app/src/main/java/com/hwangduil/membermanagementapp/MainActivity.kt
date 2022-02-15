@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.insertBtn.setOnClickListener(this)
         binding.deleteBtn.setOnClickListener(this)
         binding.searchBtn.setOnClickListener(this)
+        binding.printAll.setOnClickListener(this)
 
     }
 
@@ -37,6 +38,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             binding.searchBtn -> {
                 val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+            }
+            binding.printAll -> {
+                val intent = Intent(this, PrintAllMemberActivity::class.java)
                 startActivity(intent)
             }
         }

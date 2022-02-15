@@ -58,6 +58,8 @@ class DBHelper(context: Context, name: String?) : SQLiteOpenHelper(context, name
     // 모든 회원 출력
     fun allPrint() {
         val query = " SELECT * FROM MEMBERS "
+        val db = dbHelper?.readableDatabase
+        db?.execSQL(query)
     }
 
 }
